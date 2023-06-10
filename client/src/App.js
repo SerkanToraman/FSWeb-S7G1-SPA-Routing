@@ -38,7 +38,7 @@ export default function App () {
   const KaydedilenlerListesineEkle = (movie) => {
     // Burası esnek. Aynı filmin birden fazla kez "saved" e eklenmesini engelleyin
     console.log("KaydedilenlerListesineEkle",movie)
-    setSaved([...saved,movie])
+    saved.filter(item =>movie.id=== item.id ).length === 0 ? setSaved([...saved,movie]): setSaved([...saved]);
   };
   useEffect(()=>{
     console.log("saved",saved)
@@ -47,7 +47,7 @@ export default function App () {
   return (
     <div>
       
-      <KaydedilenlerListesi list={[]} />
+      <KaydedilenlerListesi list={saved} />
         <Switch>
         <Route path = {`/filmler/:id`}>
                 <Film KaydedilenlerListesineEkle ={KaydedilenlerListesineEkle}/>
