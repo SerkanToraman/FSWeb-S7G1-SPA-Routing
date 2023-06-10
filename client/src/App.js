@@ -1,23 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {
-  Routes,
   Switch,
   Route,
-  Link,
-  useParams,
-  useRouteMatch,
-  useHistory,
 } from "react-router-dom";
 
 
 //Components/Filmler
 import KaydedilenlerListesi from './Filmler/KaydedilenlerListesi';
 import FilmListesi from './Filmler/FilmListesi';
+import FilmCard from './Filmler/FilmCard';
+import Film from './Filmler/Film';
 
 export default function App () {
   const [saved, setSaved] = useState([]); // Stretch: the ids of "saved" movies
   const [movieList, setMovieList] = useState([]);
+
 
   useEffect(() => {
     const FilmleriAl = () => {
@@ -45,12 +43,13 @@ export default function App () {
       
       <KaydedilenlerListesi list={[]} />
         <Switch>
-          <Route>
+        <Route path = {`/filmler/:id`}>
+                <Film />
+          </Route>
+          <Route path="/">
             <FilmListesi movies={movieList} />
           </Route>
         </Switch>
-
-      <div>Bu Div'i kendi Routelarınızla değiştirin</div>
     </div>
   );
 }
