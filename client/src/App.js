@@ -34,17 +34,23 @@ export default function App () {
     FilmleriAl();
   }, []);
 
-  const KaydedilenlerListesineEkle = id => {
+  // Kaydedilenler listesinde tum movie oldugu icin id @den movie degistirdim
+  const KaydedilenlerListesineEkle = (movie) => {
     // Burası esnek. Aynı filmin birden fazla kez "saved" e eklenmesini engelleyin
+    console.log("KaydedilenlerListesineEkle",movie)
+    setSaved([...saved,movie])
   };
+  useEffect(()=>{
+    console.log("saved",saved)
 
+  },[saved])
   return (
     <div>
       
       <KaydedilenlerListesi list={[]} />
         <Switch>
         <Route path = {`/filmler/:id`}>
-                <Film />
+                <Film KaydedilenlerListesineEkle ={KaydedilenlerListesineEkle}/>
           </Route>
           <Route path="/">
             <FilmListesi movies={movieList} />

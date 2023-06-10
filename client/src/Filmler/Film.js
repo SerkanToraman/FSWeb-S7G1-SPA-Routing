@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom';
 
 export default function Film(props) {
   const [movie, setMovie] = useState();
+  const {KaydedilenlerListesineEkle} =props;
+ 
 
   let { id } =useParams();
 
@@ -27,7 +29,7 @@ export default function Film(props) {
   }, [id]);
 
   // Yalnızca esnek görevlere geçtiğinizde burdaki yorum etiketini kaldırın
-  // const filmiKaydet = evt => { }
+  //const filmiKaydet = evt => {KaydedilenlerListesineEkle(id)} asagida direk bos fonksiyon ile ilerledim
 
   if (!movie) {
     return <div>Film bilgisi yükleniyor...</div>;
@@ -53,7 +55,9 @@ export default function Film(props) {
           </div>
         ))}
       </div>
-      <div className="save-button">Kaydet</div>
+      <div className="save-button" onClick={()=>{KaydedilenlerListesineEkle(movie)}}>Kaydet</div>
     </div>
   );
 }
+
+
